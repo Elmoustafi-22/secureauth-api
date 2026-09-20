@@ -8,6 +8,62 @@
       "when": 1787405970520,
       "tag": "0000_loud_energizer",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1787671787247,
+      "tag": "0001_chunky_selene",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1787674131619,
+      "tag": "0002_brief_zaran",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1787748437727,
+      "tag": "0003_mushy_mauler",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1787748683879,
+      "tag": "0004_magical_dragon_man",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1788020106667,
+      "tag": "0005_freezing_pixie",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1788021671265,
+      "tag": "0006_thick_champions",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1788186165144,
+      "tag": "0007_tricky_blacklash",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1788462447477,
+      "tag": "0008_demonic_maddog",
+      "breakpoints": true
     }
   ]
 }

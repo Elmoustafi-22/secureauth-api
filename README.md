@@ -1,98 +1,223 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# 🔐 SecureAuth API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A production-ready authentication and account management REST API built with **NestJS**, **Drizzle ORM**, and **PostgreSQL**.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## ✨ Features
 
-## Description
+- **JWT Authentication** — Access tokens (15 min) + refresh tokens (30 days)
+- **Refresh Token Rotation** — Old tokens are revoked on each refresh, preventing replay attacks
+- **Argon2 Password Hashing** — Industry-leading, memory-hard hashing for stored passwords
+- **Role-Based Access Control** — `user` and `admin` roles with guard-protected endpoints
+- **Financial Accounts** — Create accounts and withdraw funds with balance tracking
+- **Idempotent Withdrawals** — `Idempotency-Key` header prevents duplicate transactions
+- **Paginated Queries** — Search, filter, sort, and paginate user listings
+- **Session Management** — Revoke single sessions or all sessions at once
+- **Input Validation** — `class-validator` with whitelist and auto-transform
+- **Swagger / OpenAPI Docs** — Interactive API documentation at `/api/docs`
+- **Dockerized PostgreSQL** — One-command database setup with Docker Compose
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## 🛠 Tech Stack
 
-## Project setup
+| Layer          | Technology                                                     |
+| -------------- | -------------------------------------------------------------- |
+| Framework      | [NestJS](https://nestjs.com/) v11                              |
+| Language       | TypeScript                                                     |
+| Database       | PostgreSQL 17                                                  |
+| ORM            | [Drizzle ORM](https://orm.drizzle.team/)                       |
+| Authentication | [Passport](http://www.passportjs.org/) + JWT                   |
+| Password Hash  | [Argon2](https://github.com/ranisalt/node-argon2)              |
+| Validation     | [class-validator](https://github.com/typestack/class-validator) |
+| API Docs       | [@nestjs/swagger](https://docs.nestjs.com/openapi/introduction) |
+| Containers     | Docker Compose                                                 |
 
-```bash
-$ npm install
-```
+## 📋 Prerequisites
 
-## Compile and run the project
+- **Node.js** >= 18
+- **npm** >= 9
+- **Docker** & **Docker Compose** (for PostgreSQL)
 
-```bash
-# development
-$ npm run start
+## 🚀 Getting Started
 
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
-
-## Run tests
+### 1. Clone the repository
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+git clone https://github.com/Elmoustafi-22/secureauth-api.git
+cd secureauth-api
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### 2. Install dependencies
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+npm install
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+### 3. Start the database
 
-## Resources
+```bash
+docker compose up -d
+```
 
-Check out a few resources that may come in handy when working with NestJS:
+This starts a PostgreSQL 17 container on port **5433**.
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+### 4. Configure environment variables
 
-## Support
+Create a `.env` file in the project root (or edit the existing one):
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```env
+DATABASE_URL=postgresql://postgres:postgres@localhost:5433/secureauth
+JWT_SECRET=your-secret-key-here
+```
 
-## Stay in touch
+> ⚠️ Use a strong, random `JWT_SECRET` in production.
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### 5. Run database migrations
 
-## License
+```bash
+npx drizzle-kit push
+```
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+### 6. Start the server
+
+```bash
+# Development (watch mode)
+npm run start:dev
+
+# Production
+npm run build
+npm run start:prod
+```
+
+The API is now running at `http://localhost:3000`.
+
+## 📖 API Documentation (Swagger)
+
+Once the server is running, visit:
+
+```
+http://localhost:3000/api/docs
+```
+
+The Swagger UI provides an interactive explorer for every endpoint, with request/response schemas, example values, and a built-in **"Authorize"** button to test protected routes with your JWT.
+
+## 📡 API Endpoints
+
+### Health
+
+| Method | Endpoint | Auth | Description    |
+| ------ | -------- | ---- | -------------- |
+| `GET`  | `/`      | No   | Health check   |
+
+### Auth
+
+| Method | Endpoint           | Auth   | Description                       |
+| ------ | ------------------ | ------ | --------------------------------- |
+| `POST` | `/auth/register`   | No     | Register a new user               |
+| `POST` | `/auth/login`      | No     | Login and receive tokens          |
+| `POST` | `/auth/refresh`    | No     | Refresh access token (rotates refresh token) |
+| `POST` | `/auth/logout`     | No     | Revoke a single session           |
+| `POST` | `/auth/logout-all` | Bearer | Revoke all sessions for the user  |
+| `GET`  | `/auth/me`         | Bearer | Get current authenticated user    |
+
+### Users
+
+| Method | Endpoint     | Auth         | Description                          |
+| ------ | ------------ | ------------ | ------------------------------------ |
+| `GET`  | `/users/:id` | No           | Get a user by UUID                   |
+| `GET`  | `/users`     | Bearer/Admin | List all users (paginated, filterable) |
+
+### Accounts
+
+| Method | Endpoint                | Auth   | Headers            | Description              |
+| ------ | ----------------------- | ------ | ------------------ | ------------------------ |
+| `POST` | `/accounts/create`      | Bearer | —                  | Create a financial account |
+| `POST` | `/accounts/withdraw`    | Bearer | `Idempotency-Key`  | Withdraw funds           |
+| `GET`  | `/accounts/transactions`| Bearer | —                  | List account transactions |
+
+## 🏗 Project Structure
+
+```
+src/
+├── main.ts                    # App bootstrap + Swagger setup
+├── app.module.ts              # Root module
+├── app.controller.ts          # Health check endpoint
+├── app.service.ts
+│
+├── auth/                      # Authentication module
+│   ├── auth.controller.ts     # Login, register, refresh, logout endpoints
+│   ├── auth.service.ts        # Auth business logic
+│   ├── auth.module.ts
+│   ├── dto/                   # LoginDto, RegisterDto
+│   ├── guards/                # JwtAuthGuard, RolesGuard
+│   ├── strategies/            # Passport JWT strategy
+│   ├── decorators/            # @Roles() decorator
+│   ├── types/                 # AuthenticatedRequest, AuthenticatedUser
+│   └── utils/                 # Refresh token parser
+│
+├── users/                     # Users module
+│   ├── users.controller.ts    # User lookup and listing endpoints
+│   ├── users.service.ts       # User CRUD + paginated queries
+│   ├── users.module.ts
+│   ├── dto/                   # QueryUsersDto
+│   └── types/                 # CreateUserInput
+│
+├── accounts/                  # Accounts module
+│   ├── accounts.controller.ts # Account creation, withdrawal, transactions
+│   ├── accounts.service.ts    # Financial operations with row-level locking
+│   ├── accounts.module.ts
+│   └── dto/                   # WithdrawDto
+│
+├── sessions/                  # Sessions module
+│   ├── sessions.service.ts    # Session CRUD, rotation, revocation
+│   └── sessions.module.ts
+│
+├── idempotency/               # Idempotency module
+│   ├── idempotency.service.ts # Duplicate request detection
+│   └── idempotency.module.ts
+│
+├── database/                  # Database module
+│   ├── schema.ts              # Drizzle schema (users, sessions, accounts, transactions, idempotency_keys)
+│   ├── database.provider.ts   # pg Pool + Drizzle instance
+│   ├── database.module.ts
+│   └── database.types.ts
+│
+└── common/                    # Shared utilities
+    └── decorators/
+```
+
+## ⚙️ Environment Variables
+
+| Variable       | Description                      | Default                                            |
+| -------------- | -------------------------------- | -------------------------------------------------- |
+| `DATABASE_URL` | PostgreSQL connection string     | `postgresql://postgres:postgres@localhost:5433/secureauth` |
+| `JWT_SECRET`   | Secret key for signing JWTs      | —                                                  |
+| `PORT`         | Server port                      | `3000`                                             |
+
+## 🧪 Running Tests
+
+```bash
+# Unit tests
+npm run test
+
+# E2E tests
+npm run test:e2e
+
+# Test coverage
+npm run test:cov
+```
+
+## 📜 Scripts
+
+| Script             | Description                      |
+| ------------------ | -------------------------------- |
+| `npm run start:dev`  | Start in watch mode            |
+| `npm run start:prod` | Start production build         |
+| `npm run build`      | Compile TypeScript             |
+| `npm run lint`       | Lint and auto-fix              |
+| `npm run format`     | Format code with Prettier      |
+| `npm run test`       | Run unit tests                 |
+| `npm run test:e2e`   | Run end-to-end tests           |
+| `npm run test:cov`   | Run tests with coverage report |
+
+## 📄 License
+
+This project is [UNLICENSED](./LICENSE) — private use only.
