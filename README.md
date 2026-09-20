@@ -1,6 +1,6 @@
 # 🔐 SecureAuth API
 
-A production-ready authentication and account management REST API built with **NestJS**, **Drizzle ORM**, and **PostgreSQL**.
+A secure authentication and account management REST API built with **NestJS**, **Drizzle ORM**, and **PostgreSQL**.
 
 ## ✨ Features
 
